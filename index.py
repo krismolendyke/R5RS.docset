@@ -55,7 +55,10 @@ def _get_insert(index):
 
 def _main():
     index_file_path = os.path.join(RESOURCES_DIR, INDEX_FILE)
-    os.remove(index_file_path)
+    try:
+        os.remove(index_file_path)
+    except:  # pylint: disable=bare-except
+        pass
     conn = sqlite3.connect(index_file_path)
     with conn, open(os.path.join(RESOURCES_DIR, "Documents", PROCEDURE_FILE)) as f:
         conn.execute("CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);")
