@@ -5,7 +5,9 @@ http://www.schemers.org/Documents/Standards/R5RS/HTML/.
 
 ## Requirements
 
-A Python 3.5 installation.
+- A Python 3.5 installation
+- `Make`
+- `sqlite3`
 
 ## Usage
 
