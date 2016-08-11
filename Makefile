@@ -1,3 +1,4 @@
+DOCSET := R5RS
 PYTHON := python3.5
 
 help:
@@ -8,7 +9,24 @@ help:
 	sort					             | \
 	pr -2 -t
 
+docset: test clean
+	./index.py
+	tar \
+          --exclude '*.py'		\
+          --exclude '*.tgz'		\
+          --exclude '.DS_Store'	        \
+          --exclude '.git'		\
+          --exclude '.gitignore'	\
+          --exclude 'Makefile'		\
+          -C ..                         \
+          -cvzf                         \
+          $(DOCSET).tgz                 \
+          $(DOCSET).docset
+
 test:
 	./test_index.py
 
-.PHONY: help test
+clean:
+	rm -rf *~ __pycache__ *.tgz
+
+.PHONY: help docset test clean
